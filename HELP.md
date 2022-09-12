@@ -27,3 +27,25 @@ These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
+### Endpoints
+
+The following endpoints would be implemented.
+
+#### /users
+
+* GET "/" - to get users by criteria (for some search)
+* GET "/{id}" - to get user by id;
+* PATCH "/{id}" - to update user as an owner of the user;
+* POST "/admin/" - to add user;
+* PATCH "/admin/{id}" - to update user as an administrator(also to set another role to user);
+* DELETE "/admin/{id}" - to delete user as an administrator.
+
+#### /teams
+
+* GET "/" - to get teams by criteria
+* GET "/{id}" - to get team by id;
+* PATCH "/{id}" - to update team as an owner of the user;
+* POST "/admin/" - to add user;
+* PATCH "/admin/{id}" - to update user as an administrator(also to set another role to user);
+* DELETE "/admin/{id}" - to delete user as an administrator.
+

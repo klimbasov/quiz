@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/quiz_dev
+    password: 15411598
+    sql:
+      init:
+        platform: postgres
+  jpa:
+    #    database-platform: postgres
+    hibernate:
+      ddl-auto: update
+    database: POSTGRESQL

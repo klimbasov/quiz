@@ -1,7 +1,2 @@
 rootProject.name = 'quiz'
-include 'controller'
-include 'service'
-include 'repository'
-include 'domain'
-include 'sequrity'
 

@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: mysql
+quiz:
+  pageSize: '20'
+  secret: hello

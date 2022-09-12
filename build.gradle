@@ -1,17 +1,46 @@
-subprojects{
-    apply plugin: 'java'
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+}
 
-    group = 'com.innowise'
-    version = '0.0.1-SNAPSHOT'
-    sourceCompatibility = '18'
+group = 'com.innowise.quiz'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '18'
 
-    configurations {
-        compileOnly {
-            extendsFrom annotationProcessor
-        }
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
     }
+}
 
-    repositories {
-        mavenCentral()
-    }
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.hibernate:hibernate-validator:7.0.5.Final'
+
+    implementation 'mysql:mysql-connector-java:8.0.30'
+
+    implementation 'org.hibernate:hibernate-validator:7.0.5.Final'
+
+    implementation 'org.mapstruct:mapstruct:1.5.2.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
+    implementation 'org.postgresql:postgresql:42.5.0'
+
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
 }
