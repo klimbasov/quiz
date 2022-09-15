@@ -32,11 +32,5 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz")
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Set<QuizResult> results = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "creator", nullable = false)
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private User lead;
+    private Set<Result> results = new HashSet<>();
 }

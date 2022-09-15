@@ -9,7 +9,7 @@ public interface CrudService<T> {
 
     T delete(Long id);
 
-    T update(T dto);
+    T update(T dto, Long Id);
 
     List<T> getAll(Integer page);
 }

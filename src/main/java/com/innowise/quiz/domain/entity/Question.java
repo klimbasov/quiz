@@ -21,7 +21,6 @@ public class Question {
     private String text;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-
     private Set<Option> options = new HashSet<>();
 
     @ManyToOne

@@ -2,11 +2,12 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.7.3'
     id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+    id 'jacoco'
 }
 
 group = 'com.innowise.quiz'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '18'
+sourceCompatibility = '16'
 
 repositories {
     mavenCentral()
@@ -24,6 +25,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.projectlombok:lombok:1.18.22'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -36,11 +38,61 @@ dependencies {
 
     implementation 'org.mapstruct:mapstruct:1.5.2.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
-    implementation 'org.postgresql:postgresql:42.5.0'
+    //implementation 'org.postgresql:postgresql:42.5.0'
 
+    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    implementation 'com.jayway.jsonpath:json-path:2.7.0'
+
+    // https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin
+//    implementation 'org.jacoco:jacoco-maven-plugin:0.8.8'
+
+}
+
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+
+        rule {
+            enabled = false
+            element = 'CLASS'
+            includes = ['org.gradle.*']
+
+            limit {
+                counter = 'LINE'
+                value = 'TOTALCOUNT'
+                maximum = 0.3
+            }
+        }
+    }
+}
+
+
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
 }
 
 
 tasks.named('test') {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
 }

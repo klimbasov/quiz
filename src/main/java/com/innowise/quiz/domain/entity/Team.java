@@ -18,11 +18,8 @@ public class Team {
     @Column(name = "name", unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private Set<Quiz> quizzes = new HashSet<>();
-
-    @OneToMany(mappedBy = "team")
-    private Set<QuizResult> results = new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -39,14 +36,4 @@ public class Team {
             inverseJoinColumns = @JoinColumn(name = "leads_id")
     )
     private Set<User> leads = new HashSet<>();
-
-    public void addUser(User user) {
-        this.users.add(user);
-        user.getTeams().add(this);
-    }
-
-    public void addLead(User user) {
-        this.leads.add(user);
-        user.getLeadingTeams().add(this);
-    }
 }

@@ -1,6 +1,6 @@
 package com.innowise.quiz.domain.entity;
 
-import com.innowise.quiz.sequrity.role.Role;
+import com.innowise.quiz.config.security.role.Role;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -40,7 +40,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<QuizResult> results = new HashSet<>();
+    private Set<Result> results = new HashSet<>();
 
     @ElementCollection(targetClass = Role.class)
     @Enumerated(EnumType.STRING)

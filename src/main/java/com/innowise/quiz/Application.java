@@ -1,6 +1,6 @@
 package com.innowise.quiz;
 
-import com.innowise.quiz.service.config.ServicePropertySource;
+import com.innowise.quiz.config.ServicePropertySource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
