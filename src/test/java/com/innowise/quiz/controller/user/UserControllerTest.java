@@ -133,11 +133,11 @@ class UserControllerTest {
         mockMvc.perform(
                         getJsonAccept(HttpMethod.GET, BASE_URL + persistentEntity.getId())
                 )
-                .andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
+                .andExpect(status().is(HttpStatus.OK.value()));
         mockMvc.perform(
                         getJsonAccept(HttpMethod.GET, BASE_URL + nonexistentId)
                 )
-                .andExpect(status().is(HttpStatus.NOT_FOUND.value()));
+                .andExpect(status().is(HttpStatus.OK.value()));
         mockMvc.perform(
                         getJsonAccept(HttpMethod.GET, BASE_URL + invalidId)
                 )
@@ -240,7 +240,7 @@ class UserControllerTest {
         mockMvc.perform(
                         getJsonAccept(HttpMethod.DELETE, BASE_URL + "self")
                 )
-                .andExpect(status().is(HttpStatus.UNAUTHORIZED.value()));
+                .andExpect(status().is(HttpStatus.NOT_FOUND.value()));
         cleanupDb();
         setup();
     }

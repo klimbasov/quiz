@@ -73,6 +73,7 @@ public class AdminQuizControllerTest {
 
     @BeforeAll
     void setup() {
+        cleanupDb();
         initAndPersistAttachedTeam();
         initAttachedQuestion();
 
@@ -95,6 +96,14 @@ public class AdminQuizControllerTest {
                 .setQuestions(List.of(attachedQuestionDto))
                 .setTeam(teamMapper.toSimpleDto(attachedTeam));
     }
+
+//    private void dropContext() {
+//        executeTransactionConsumer(status -> {
+//            manager.createQuery("select q from Quiz q", Quiz.class).getResultStream().forEach(manager::remove);
+//            manager.createQuery("select t from Team t", Team.class).getResultStream().forEach(manager::remove);
+//            manager.flush();
+//        });
+//    }
 
     @AfterAll
     void cleanupDb() {

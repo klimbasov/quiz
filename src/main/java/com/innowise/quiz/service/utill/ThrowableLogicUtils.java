@@ -12,6 +12,7 @@ import java.nio.file.AccessDeniedException;
 import java.util.Optional;
 
 import static com.innowise.quiz.service.utill.SelfAccessLogicUtils.isSelfUpdateAcceptable;
+import static java.util.Objects.isNull;
 
 public class ThrowableLogicUtils {
     public static void throwIfPageDoseNotExist(Integer page, Page<?> entityPage) {
@@ -21,6 +22,9 @@ public class ThrowableLogicUtils {
     }
 
     public static <T> T getOrElseThrow(Optional<T> optional) {
+        if(isNull(optional)){
+            throw new ServiceException("gained null instead of optional instance", HttpStatus.NOT_FOUND);
+        }
         return optional.orElseThrow(() -> new ServiceException("not found", HttpStatus.NOT_FOUND));
     }
 

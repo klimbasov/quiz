@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/quiz_test?createDatabaseIfNotExist=true
+    password: Yh0o6HL7^xtCrQZwobyG
+    tomcat:
+      max-wait: 20000
+  sql:
+    init:
+      platform: mysql
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: off
